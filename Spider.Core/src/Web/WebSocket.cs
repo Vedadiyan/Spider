@@ -153,7 +153,7 @@ namespace Spider.Core.Web
                 case WebSocketError.UnsupportedProtocol:
                 case WebSocketError.UnsupportedVersion:
                     Close?.Invoke(this, new EventArgs());
-                    //socketWatcher.Change(Timeout.Infinite, Timeout.Infinite);
+                    socketWatcher?.Change(Timeout.Infinite, Timeout.Infinite);
                     Closed = true;
                     return false;
             }
