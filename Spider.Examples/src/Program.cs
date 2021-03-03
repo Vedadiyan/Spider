@@ -28,7 +28,7 @@ namespace Spider.Examples
         public async Task<IActionResult> Index()
         {
             CancellationTokenSource cts = new CancellationTokenSource();
-            cts.CancelAfter(15000);
+            //cts.CancelAfter(15000);
             await Context.WebSocket.AcceptAsync(null, 1024, TimeSpan.FromSeconds(15));
             Context.WebSocket.Message += (sender, e) => {
                 Console.WriteLine(e.ReadMessage(Encoding.UTF8));
