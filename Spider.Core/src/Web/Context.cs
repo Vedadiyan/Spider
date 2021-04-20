@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using Spider.ArcheType;
-using Spider.Core.Routing;
+using Spider.Routing;
 
 namespace Spider.Core.Web
 {
@@ -19,6 +19,9 @@ namespace Spider.Core.Web
         public IWebSocket WebSocket { get; }
         public IPEndPoint RemoteEndPoint { get; }
         public bool BodyAvailable { get; }
+
+        public string AbsolutePath { get; }
+
         public Context(Route route, HttpListenerContext httpListenerContext)
         {
             RouteValues = new Dictionary<string, object>();
@@ -74,6 +77,7 @@ namespace Spider.Core.Web
             IsWebSocket = httpListenerContext.Request.IsWebSocketRequest;
             WebSocket = new WebSocket(httpListenerContext);
             RemoteEndPoint = httpListenerContext.Request.RemoteEndPoint;
+            AbsolutePath = httpListenerContext.Request.Url.AbsolutePath.TrimStart('/');
         }
     }
 

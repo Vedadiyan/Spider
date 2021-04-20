@@ -2,9 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <PackageId>Centaurus.Spider.Archetype</PackageId>
+    <PackageId>Centaurus.Spider.Router</PackageId>
     <Version>1.0.0.1</Version>
     <Authors>Pouya Vedadiyan</Authors>
     <Company>Centaurus</Company>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Spider.Archetype/Spider.Archetype.csproj" />
+  </ItemGroup>
 </Project>

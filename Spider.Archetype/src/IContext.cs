@@ -15,5 +15,6 @@ namespace Spider.ArcheType
         bool IsWebSocket { get; }
         IWebSocket WebSocket { get; }
         IPEndPoint RemoteEndPoint { get; }
+        string AbsolutePath { get; }
     }
 }

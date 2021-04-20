@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spider.WebAPI", "Spider.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spider.Examples", "Spider.Examples\Spider.Examples.csproj", "{C73BF079-0791-4B42-97F1-53293D02A259}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spider.Router", "Spider.Router\Spider.Router.csproj", "{01D1D58E-F543-40A5-A23F-59647012F944}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{C73BF079-0791-4B42-97F1-53293D02A259}.Release|x64.Build.0 = Release|Any CPU
 		{C73BF079-0791-4B42-97F1-53293D02A259}.Release|x86.ActiveCfg = Release|Any CPU
 		{C73BF079-0791-4B42-97F1-53293D02A259}.Release|x86.Build.0 = Release|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Debug|x64.Build.0 = Debug|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Debug|x86.Build.0 = Debug|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Release|x64.ActiveCfg = Release|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Release|x64.Build.0 = Release|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Release|x86.ActiveCfg = Release|Any CPU
+		{01D1D58E-F543-40A5-A23F-59647012F944}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

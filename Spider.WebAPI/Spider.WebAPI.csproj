@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>Centaurus.Spider.WebAPI</PackageId>
+    <Version>1.0.0.1</Version>
+    <Authors>Pouya Vedadiyan</Authors>
+    <Company>Centaurus</Company>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../Spider.ArcheType/Spider.ArcheType.csproj" />
