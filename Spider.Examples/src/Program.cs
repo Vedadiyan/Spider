@@ -14,7 +14,7 @@ namespace Spider.Examples
 
         public static async Task Main(string[] args)
         {
-            await Spider.WebAPI.Builder.BuildAsync(new string[] { "http://127.0.0.1:8082/" }, new System.Threading.CancellationToken());
+            Spider.WebAPI.Builder.Build(new string[] { "http://127.0.0.1:8082/" });
         }
     }
 

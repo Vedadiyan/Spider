@@ -16,7 +16,7 @@ namespace Spider.WebAPI
 {
     public class Builder
     {
-        public static Task BuildAsync(String[] prefixes, CancellationToken cancellationToken)
+        public static WebServer Build(String[] prefixes)
         {
             TypeInfo[] definedTypes = Assembly.GetEntryAssembly().DefinedTypes.ToArray();
             List<Route> routes = new List<Route>();
@@ -192,7 +192,7 @@ namespace Spider.WebAPI
             }
             Router.RegisterRoutes(routes.ToArray());
             WebServer server = new WebServer(prefixes);
-            return server.Start(cancellationToken);
+            return server;
         }
     }
 }

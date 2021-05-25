@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>Centaurus.Spider.Archetype</PackageId>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0-beta</Version>
     <Authors>Pouya Vedadiyan</Authors>
     <Company>Centaurus</Company>
   </PropertyGroup>
