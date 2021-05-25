@@ -22,7 +22,7 @@ namespace Spider.Core.Web
 
         public string AbsolutePath { get; }
 
-        public Context(Route route, HttpListenerContext httpListenerContext)
+        public Context(Route route, HttpListenerContext httpListenerContext, bool strictRouting)
         {
             RouteValues = new Dictionary<string, object>();
             string[] routeValues = httpListenerContext.Request.Url.AbsolutePath.TrimStart('/').Split('/');
@@ -41,7 +41,7 @@ namespace Spider.Core.Web
             Query = new Dictionary<string, object>();
             foreach (var key in httpListenerContext.Request.QueryString.AllKeys)
             {
-                Parameter queryParameter = route.Query.FirstOrDefault(x => x.Name.Equals(key, StringComparison.OrdinalIgnoreCase));
+                Parameter queryParameter = route.Query?.FirstOrDefault(x => x.Name.Equals(key, StringComparison.OrdinalIgnoreCase)) ?? default;
                 if (queryParameter.Name != null)
                 {
                     if (queryParameter.IsArray)
@@ -58,6 +58,10 @@ namespace Spider.Core.Web
                     {
                         Query.Add(queryParameter.Name, Convert.ChangeType(httpListenerContext.Request.QueryString[key], queryParameter.TypeCode));
                     }
+                }
+                else if (strictRouting)
+                {
+                    throw new Exception($"Unauthorized Route Parameter {key}");
                 }
             }
             MemoryStream body = new MemoryStream();

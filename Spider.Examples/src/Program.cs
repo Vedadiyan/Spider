@@ -14,7 +14,10 @@ namespace Spider.Examples
 
         public static async Task Main(string[] args)
         {
-            Spider.WebAPI.Builder.Build(new string[] { "http://127.0.0.1:8082/" });
+            var server = Spider.WebAPI.Builder.Build(new string[] { "http://127.0.0.1:8082/" });
+            server.EnableStrictRouting();
+            server.EnableDetailedError();
+            await server.StartAsync(new CancellationToken());
         }
     }
 
@@ -23,7 +26,7 @@ namespace Spider.Examples
     {
         [AutoWire]
         public IContext Context { get; set;}
-        [Verb("GET")]
+        [Verb("Get")]
         [Route("Index")]
         public async Task<IActionResult> Index()
         {

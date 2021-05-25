@@ -19,6 +19,7 @@ namespace Spider.Core.Web
         private string cors_AccessOrigin;
         private string cores_Methods;
         private bool detailedError_Enable;
+        private bool strictRouting_Enable;
         public WebServer(string[] prefixes)
         {
             middleware = new List<IMiddleware>();
@@ -44,6 +45,10 @@ namespace Spider.Core.Web
         public WebServer EnableDetailedError()
         {
             detailedError_Enable = true;
+            return this;
+        }
+        public WebServer EnableStrictRouting() {
+            strictRouting_Enable = true;
             return this;
         }
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -93,7 +98,7 @@ namespace Spider.Core.Web
                     Route route = Router.GetRoute(httpListenerContext.Request.HttpMethod, httpListenerContext.Request.Url.AbsolutePath.TrimStart('/'));
                     if (route.Hash != null)
                     {
-                        IContext context = new Context(route, httpListenerContext);
+                        IContext context = new Context(route, httpListenerContext, strictRouting_Enable);
                         if (middleware.Count > 0)
                         {
                             foreach (var _middleware in middleware)
