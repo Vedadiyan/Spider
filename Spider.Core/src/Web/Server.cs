@@ -46,7 +46,7 @@ namespace Spider.Core.Web
             detailedError_Enable = true;
             return this;
         }
-        public async Task Start(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
             if (!isRunning)
             {
