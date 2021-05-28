@@ -47,7 +47,8 @@ namespace Spider.Core.Web
             detailedError_Enable = true;
             return this;
         }
-        public WebServer EnableStrictRouting() {
+        public WebServer EnableStrictRouting()
+        {
             strictRouting_Enable = true;
             return this;
         }
@@ -86,9 +87,16 @@ namespace Spider.Core.Web
                 httpListenerContext.Response.AddHeader("X-Powered-By", "Spider Platform by Centaurus ESS");
                 if (cors_Enabled)
                 {
-                    httpListenerContext.Response.AddHeader("Access-Control-Allow-Origin", cors_AccessOrigin ?? "*");
-                    httpListenerContext.Response.AddHeader("Access-Control-Allow-Headers", cors_AllowedHeaders ?? "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-                    httpListenerContext.Response.AddHeader("Access-Control-Allow-Methods", cores_Methods ?? "HEAD, GET, PUT, POST, DELETE");
+                    httpListenerContext.Response.AddHeader("Access-Control-Allow-Origin", cors_AccessOrigin ?? httpListenerContext.Request.Headers["origin"] ?? "*");
+                    httpListenerContext.Response.AddHeader("Access-Control-Allow-Credentials", "true");
+                    if (httpListenerContext.Request.HttpMethod == "OPTIONS")
+                    {
+                        httpListenerContext.Response.AddHeader("Access-Control-Allow-Headers", cors_AllowedHeaders ?? "Content-Type, Access-Control-Allow-Headers, Authorization, Origin, X-Requested-With");
+                        httpListenerContext.Response.AddHeader("Access-Control-Allow-Methods", cores_Methods ?? "HEAD, GET, PUT, POST, DELETE");
+                        httpListenerContext.Response.AddHeader("Access-Control-Max-Age", "86400");
+                        httpListenerContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
+                        httpListenerContext.Response.Close();
+                    }
                 }
                 try
                 {
