@@ -10,8 +10,8 @@ namespace Spider.Core.Web
 {
     public class Context : IContext
     {
-        public Dictionary<string, object> Query { get; }
-        public Dictionary<string, object> RouteValues { get; }
+        private Dictionary<string, object> query { get; }
+        private Dictionary<string, object> routeValues { get; }
         public Stream Body { get; }
         public WebHeaderCollection Headers { get; }
         public string Method { get; }
@@ -21,24 +21,30 @@ namespace Spider.Core.Web
         public bool BodyAvailable { get; }
 
         public string AbsolutePath { get; }
+        public Dictionary<string, object> Claims { get; }
+
+        public IReadOnlyDictionary<string, object> Query => query;
+
+        public IReadOnlyDictionary<string, object> RouteValues => routeValues;
 
         public Context(Route route, HttpListenerContext httpListenerContext, bool strictRouting)
         {
-            RouteValues = new Dictionary<string, object>();
+            this.routeValues = new Dictionary<string, object>();
+            Claims = new Dictionary<string, object>();
             string[] routeValues = httpListenerContext.Request.Url.AbsolutePath.TrimStart('/').Split('/');
             for (int i = 0; i < routeValues.Length; i++)
             {
                 Parameter parameter = route.Parameters[i];
                 if (parameter.ReadOnly)
                 {
-                    RouteValues.Add(parameter.Alias ?? parameter.Name, routeValues[i]);
+                    this.routeValues.Add(parameter.Alias ?? parameter.Name, routeValues[i]);
                 }
                 else
                 {
-                    RouteValues.Add(parameter.Name, Convert.ChangeType(routeValues[i], parameter.TypeCode));
+                    this.routeValues.Add(parameter.Name, Convert.ChangeType(routeValues[i], parameter.TypeCode));
                 }
             }
-            Query = new Dictionary<string, object>();
+            query = new Dictionary<string, object>();
             foreach (var key in httpListenerContext.Request.QueryString.AllKeys)
             {
                 Parameter queryParameter = route.Query?.FirstOrDefault(x => x.Name.Equals(key, StringComparison.OrdinalIgnoreCase)) ?? default;
@@ -52,11 +58,11 @@ namespace Spider.Core.Web
                         {
                             convertedValues[i] = Convert.ChangeType(stringValues[i], queryParameter.TypeCode);
                         }
-                        Query.Add(queryParameter.Name, convertedValues);
+                        query.Add(queryParameter.Name, convertedValues);
                     }
                     else
                     {
-                        Query.Add(queryParameter.Name, Convert.ChangeType(httpListenerContext.Request.QueryString[key], queryParameter.TypeCode));
+                        query.Add(queryParameter.Name, Convert.ChangeType(httpListenerContext.Request.QueryString[key], queryParameter.TypeCode));
                     }
                 }
                 else if (strictRouting)
