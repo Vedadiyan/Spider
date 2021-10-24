@@ -6,8 +6,8 @@ namespace Spider.ArcheType
 {
     public interface IContext
     {
-        Dictionary<string, object> Query { get; }
-        Dictionary<string, object> RouteValues { get; }
+        IReadOnlyDictionary<string, object> Query { get; }
+        IReadOnlyDictionary<string, object> RouteValues { get; }
         Stream Body { get; }
         bool BodyAvailable { get; }
         WebHeaderCollection Headers { get; }
@@ -16,5 +16,6 @@ namespace Spider.ArcheType
         IWebSocket WebSocket { get; }
         IPEndPoint RemoteEndPoint { get; }
         string AbsolutePath { get; }
+        Dictionary<string, object> Claims { get; }
     }
 }
