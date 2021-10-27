@@ -26,7 +26,7 @@ namespace Spider.Examples
     public class HomeController
     {
         [AutoWire]
-        public IContext Context { get; set;}
+        public IRequestContext Context { get; set;}
         [Verb("Post")]
         [Route("Index")]
         public async Task<IActionResult> Index()

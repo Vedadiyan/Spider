@@ -4,6 +4,6 @@ namespace Spider.ArcheType {
     public interface IRequest
     {
         void Suspend();
-        Task<IResponse> HandleRequest(IContext context);
+        Task<IResponse> HandleRequest(IRequestContext context);
     }
 }

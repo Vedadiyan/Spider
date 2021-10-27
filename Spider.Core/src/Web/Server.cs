@@ -106,7 +106,7 @@ namespace Spider.Core.Web
                     Route route = Router.GetRoute(httpListenerContext.Request.HttpMethod, httpListenerContext.Request.Url.AbsolutePath.TrimStart('/'));
                     if (route.Hash != null)
                     {
-                        IContext context = new Context(route, httpListenerContext, strictRouting_Enable);
+                        IRequestContext context = new RequestContext(route, httpListenerContext, strictRouting_Enable);
                         if (middleware.Count > 0)
                         {
                             foreach (var _middleware in middleware)
@@ -124,6 +124,7 @@ namespace Spider.Core.Web
                             {
                                 httpListenerContext.Response.ContentType = response.ContentType;
                                 httpListenerContext.Response.StatusCode = (int)response.HttpStatusCode;
+                                httpListenerContext.Response.Cookies = response.Cookies;
                                 if (response.WebHeaderCollection != null)
                                 {
                                     foreach (string i in response.WebHeaderCollection)

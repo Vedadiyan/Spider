@@ -5,7 +5,7 @@ using Spider.ArcheType;
 
 namespace Spider.WebAPI.Annotations
 {
-    public delegate Task<Boolean> ExecutionDelegate(IContext context);
+    public delegate Task<Boolean> ExecutionDelegate(IRequestContext context);
     public abstract class ExecAttribute : Attribute
     {
         public ExecutionScope ExecutionScope { get; }
@@ -14,7 +14,7 @@ namespace Spider.WebAPI.Annotations
         {
             ExecutionScope = executionScope;
         }
-        public abstract Task<Continuation> Run(IContext context);
+        public abstract Task<Continuation> Run(IRequestContext context);
         public Continuation Next()
         {
             Continuation continuation = new Continuation();

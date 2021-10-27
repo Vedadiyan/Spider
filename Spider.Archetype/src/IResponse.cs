@@ -8,6 +8,7 @@ namespace Spider.ArcheType
     {
         HttpStatusCode HttpStatusCode { get; }
         WebHeaderCollection WebHeaderCollection { get; }
+        CookieCollection Cookies { get; }
         string ContentType { get; }
         Task<Stream> RenderResponseAsync();
         Stream RenderResponse();

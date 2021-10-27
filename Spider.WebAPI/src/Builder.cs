@@ -27,8 +27,8 @@ namespace Spider.WebAPI
                 if (controllerAttribute != null)
                 {
                     var properties = typeInfo.GetProperties().Select(x => new { Property = x, Attribute = x.GetCustomAttribute<AutoWireAttribute>() });
-                    var contextProperty = properties.FirstOrDefault(x => x.Attribute != null && x.Property.PropertyType == typeof(IContext));
-                    properties = properties.Where(x => x.Attribute != null && x.Property.PropertyType != typeof(IContext)).ToArray();
+                    var contextProperty = properties.FirstOrDefault(x => x.Attribute != null && x.Property.PropertyType == typeof(IRequestContext));
+                    properties = properties.Where(x => x.Attribute != null && x.Property.PropertyType != typeof(IRequestContext)).ToArray();
                     Func<Object> instanceGenerator = null;
                     foreach (MethodInfo methodInfo in typeInfo.GetMethods(BindingFlags.Static | BindingFlags.Public))
                     {
@@ -93,7 +93,7 @@ namespace Spider.WebAPI
                                     }
                                 }
                             }
-                            Func<Services, IContext, Task<IActionResult>> actionDelegate = async (services, context) =>
+                            Func<Services, IRequestContext, Task<IActionResult>> actionDelegate = async (services, context) =>
                             {
                                 Object instance = instanceGenerator();
                                 if (contextProperty != null)

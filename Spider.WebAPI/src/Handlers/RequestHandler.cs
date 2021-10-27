@@ -7,17 +7,17 @@ namespace Spider.WebAPI.Handlers
 {
     public class RequestHandler : IRequest
     {
-        private Func<Services, IContext, IActionResult> actionDelegate;
-        private Func<Services, IContext, Task<IActionResult>> actionDelegateAsync;
-        public RequestHandler(Func<Services, IContext, IActionResult> actionDelegate)
+        private Func<Services, IRequestContext, IActionResult> actionDelegate;
+        private Func<Services, IRequestContext, Task<IActionResult>> actionDelegateAsync;
+        public RequestHandler(Func<Services, IRequestContext, IActionResult> actionDelegate)
         {
             this.actionDelegate = actionDelegate;
         }
-        public RequestHandler(Func<Services, IContext, Task<IActionResult>> actionDelegateAsync)
+        public RequestHandler(Func<Services, IRequestContext, Task<IActionResult>> actionDelegateAsync)
         {
             this.actionDelegateAsync = actionDelegateAsync;
         }
-        public async Task<IResponse> HandleRequest(IContext context)
+        public async Task<IResponse> HandleRequest(IRequestContext context)
         {
             if (actionDelegate != null)
             {

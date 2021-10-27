@@ -10,18 +10,24 @@ namespace Spider.WebAPI.Handlers
     {
         public HttpStatusCode HttpStatusCode { get; private set; }
         private WebHeaderCollection webHeaderCollection;
-        public WebHeaderCollection WebHeaderCollection {
-            get {
+        public WebHeaderCollection WebHeaderCollection
+        {
+            get
+            {
                 return webHeaderCollection;
             }
-            set {
-                if(webHeaderCollection == null) {
+            set
+            {
+                if (webHeaderCollection == null)
+                {
                     webHeaderCollection = value;
                 }
             }
         }
 
         public string ContentType { get; private set; }
+
+        public CookieCollection Cookies { get; set; }
 
         private readonly String response;
 
@@ -33,7 +39,8 @@ namespace Spider.WebAPI.Handlers
             {
                 this.response = response;
             }
-            else {
+            else
+            {
                 WebHeaderCollection = new WebHeaderCollection();
                 WebHeaderCollection.Add("Location", response);
             }
