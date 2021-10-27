@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>Centaurus.Spider.WebAPI</PackageId>
-      <Version>1.0.0-nightly.20210525123000</Version>
+    <Version>1.0.0</Version>
     <Authors>Pouya Vedadiyan</Authors>
     <Company>Centaurus</Company>
   </PropertyGroup>
